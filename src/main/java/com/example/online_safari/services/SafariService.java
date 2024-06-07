@@ -17,6 +17,8 @@ public interface SafariService {
 
     Page<Safari> getAllRoutesFrom(String from, Pageable pageable);
 
+    Page<Safari> getFilteredRoutes(String  start, String dest, Pageable pageable);
+
     Page<Safari> getAllRoutesTo(String dest, Pageable pageable);
 
 }

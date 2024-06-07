@@ -55,6 +55,15 @@ public class SafariController {
 
         return ResponseEntity.ok().body(safariPage);
     }
+    @GetMapping("/get/{start}{dest}")
+    public ResponseEntity<?>  getFilteredRoutes(@PathVariable String start, @PathVariable String dest, @RequestParam(value = "page", defaultValue = "0")Integer page,
+                                             @RequestParam(value = "size", defaultValue = "25")Integer size){
+        PageRequest pageRequest =  PageRequest.of(page,size);
+
+        Page<Safari> safariPage =  safariService.getFilteredRoutes(start,dest,pageRequest);
+
+        return ResponseEntity.ok().body(safariPage);
+    }
 
     @GetMapping("/get/{uuid}")
     public ResponseEntity<?> getByUuid(@PathVariable String uuid){

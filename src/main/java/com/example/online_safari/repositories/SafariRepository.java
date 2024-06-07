@@ -14,6 +14,8 @@ public interface SafariRepository extends JpaRepository<Safari,Long> {
 
     Page<Safari> findAllByDestinationAndDeletedFalse(String destination, Pageable pageable);
 
+    Page<Safari> findAllByStartPointAndDestinationAndDeletedFalse(String start, String dest,  Pageable  pageable);
+
     Page<Safari> findAllByDeletedFalseOrderByCreatedAtDesc(Pageable pageable);
 
 

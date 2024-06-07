@@ -54,6 +54,11 @@ public class SafariServiceImpl implements SafariService {
                 return new Response<>(true,ResponseCode.NULL_ARGUMENT,"departure time can not be null");
             }
 
+            if(!safariDto.getDeparture().isBlank() &&  !Objects.equals(safariDto.getDeparture(), safari.getDeparture())){
+                System.out.println("DEPART : " + safariDto.getDeparture());
+                safari.setDeparture(safariDto.getDeparture());
+            }
+
 
             if(!safariDto.getStartPoint().isBlank() &&  !Objects.equals(safariDto.getStartPoint(), safari.getStartPoint())){
                 safari.setStartPoint(safariDto.getStartPoint());
@@ -67,7 +72,8 @@ public class SafariServiceImpl implements SafariService {
                 safari.setPrice(safariDto.getPrice());
             }
 
-            if(!safariDto.getDeparture().isBlank() &&  !Objects.equals(safariDto.getPrice(), safari.getPrice())){
+            if(!safariDto.getDeparture().isBlank() &&  !Objects.equals(safariDto.getDeparture(), safari.getDeparture())){
+                System.out.println("DEPART : " + safariDto.getDeparture());
                 safari.setDeparture(safariDto.getDeparture());
             }
 
@@ -142,6 +148,18 @@ public class SafariServiceImpl implements SafariService {
     }
 
     @Override
+    public Page<Safari> getFilteredRoutes(String start, String dest, Pageable pageable) {
+        try {
+            Page<Safari> safariPage =  safariRepository.findAllByStartPointAndDestinationAndDeletedFalse(start,dest,pageable);
+            return  safariPage;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return new PageImpl<>(new ArrayList<>());
+    }
+
+    @Override
     public Page<Safari> getAllRoutesTo(String dest, Pageable pageable) {
         try {
             Page<Safari> safariPage =  safariRepository.findAllByDestinationAndDeletedFalse(dest,pageable);
@@ -152,4 +170,6 @@ public class SafariServiceImpl implements SafariService {
         }
         return new PageImpl<>(new ArrayList<>());
     }
+
+
 }
