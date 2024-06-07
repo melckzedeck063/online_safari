@@ -25,12 +25,6 @@ public class Bookings extends BaseEntity {
     @Column(name = "status")
     private String status;
 
-    @Column(name = "from")
-    private String from;
-
-    @Column(name = "destination")
-    private String destination;
-
     @Column(name = "seats")
     private double seats;
 
@@ -42,7 +36,7 @@ public class Bookings extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "route", referencedColumnName = "uuid")
-    private Safari  route;
+    private Safari  safariUuid;
 
     @ManyToOne
     @JoinColumn(name = "bookedBy",referencedColumnName = "uuid")

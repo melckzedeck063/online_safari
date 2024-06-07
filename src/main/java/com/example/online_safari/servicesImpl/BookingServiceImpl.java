@@ -101,10 +101,6 @@ public class BookingServiceImpl implements BookingService {
 
         Bookings booking = new Bookings();
         try {
-            if(bookinngDto.getFrom() == null){
-                return new Response<>(true,ResponseCode.NULL_ARGUMENT,"Latitude is required");
-            }
-
             if(bookinngDto.getSafariUuid() == null){
                 return new Response<>(true,ResponseCode.NULL_ARGUMENT,"Latitude is required");
             }
@@ -112,16 +108,13 @@ public class BookingServiceImpl implements BookingService {
                 Optional<Safari> optionalSafari = safariRepository.findFirstByUuid(bookinngDto.getSafariUuid());
 
                 if(optionalSafari.isPresent()){
-                    booking.setRoute(optionalSafari.get());
+                    booking.setSafariUuid(optionalSafari.get());
                 }
                 else {
                     return new Response<>(true,ResponseCode.NO_RECORD_FOUND,"No record found");
                 }
             }
 
-            if(bookinngDto.getDestination() == null){
-                return new Response<>(true,ResponseCode.NULL_ARGUMENT,"Longtude is required");
-            }
 
             if(bookinngDto.getPickupd_date() == null){
                 return new Response<>(true,ResponseCode.NULL_ARGUMENT,"pickup date is required");
@@ -131,13 +124,6 @@ public class BookingServiceImpl implements BookingService {
                 booking.setPickupDate(bookinngDto.getPickupd_date());
             }
 
-            if(!bookinngDto.getFrom().isBlank() && !Objects.equals(bookinngDto.getFrom(), booking.getFrom())){
-                booking.setFrom(bookinngDto.getFrom());
-            }
-
-            if(!bookinngDto.getDestination().isBlank() && !Objects.equals(bookinngDto.getDestination(), booking.getDestination())){
-                booking.setDestination(bookinngDto.getDestination());
-            }
 
             if(bookinngDto.getSeats() <0 ){
                 return  new Response<>(true,ResponseCode.INVALID_REQUEST,"Seats no out of bound");
@@ -150,7 +136,7 @@ public class BookingServiceImpl implements BookingService {
                 Optional<Safari> optionalSafari = safariRepository.findFirstByUuid(bookinngDto.getSafariUuid());
 
                 if(optionalSafari.isPresent()){
-                    booking.setRoute(optionalSafari.get());
+                    booking.setSafariUuid(optionalSafari.get());
 
                     booking.setTotalBill(calculateBilledAmount(bookinngDto.getSeats() , optionalSafari.get().getPrice().toString()));
                 }

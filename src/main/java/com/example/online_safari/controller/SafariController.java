@@ -55,7 +55,7 @@ public class SafariController {
 
         return ResponseEntity.ok().body(safariPage);
     }
-    @GetMapping("/get/{start}{dest}")
+    @GetMapping("/get/{start}/{dest}")
     public ResponseEntity<?>  getFilteredRoutes(@PathVariable String start, @PathVariable String dest, @RequestParam(value = "page", defaultValue = "0")Integer page,
                                              @RequestParam(value = "size", defaultValue = "25")Integer size){
         PageRequest pageRequest =  PageRequest.of(page,size);

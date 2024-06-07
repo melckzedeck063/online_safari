@@ -55,17 +55,17 @@ public class SafariServiceImpl implements SafariService {
             }
 
             if(!safariDto.getDeparture().isBlank() &&  !Objects.equals(safariDto.getDeparture(), safari.getDeparture())){
-                System.out.println("DEPART : " + safariDto.getDeparture());
+//                System.out.println("DEPART : " + safariDto.getDeparture());
                 safari.setDeparture(safariDto.getDeparture());
             }
 
 
             if(!safariDto.getStartPoint().isBlank() &&  !Objects.equals(safariDto.getStartPoint(), safari.getStartPoint())){
-                safari.setStartPoint(safariDto.getStartPoint());
+                safari.setStartPoint(safariDto.getStartPoint().toLowerCase());
             }
 
             if(!safariDto.getDestination().isBlank() &&  !Objects.equals(safariDto.getDestination(), safari.getDestination())){
-                safari.setDestination(safariDto.getDestination());
+                safari.setDestination(safariDto.getDestination().toLowerCase());
             }
 
             if(!safariDto.getPrice().isBlank() &&  !Objects.equals(safariDto.getPrice(), safari.getPrice())){

@@ -13,11 +13,8 @@ import lombok.Setter;
 @Setter
 @Getter
 public class BookinngDto {
-
     private String pickupd_date;
     private String status;
-    private String from;
-    private String destination;
     private double seats;
     private double totalCost;
     private String safariUuid;
