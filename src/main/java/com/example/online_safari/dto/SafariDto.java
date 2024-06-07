@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class SafariDto {
-    private String from;
+    private String startPoint;
     private String destination;
     private String price;
     private String departure;

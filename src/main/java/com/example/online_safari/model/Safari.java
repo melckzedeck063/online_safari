@@ -16,12 +16,13 @@ import org.hibernate.annotations.Where;
 @NoArgsConstructor
 @Setter
 @Getter
-@Entity(name = "safaris")
-@SQLDelete(sql = "UPDATE safaris SET deleted = true WHERE id = ?", check = ResultCheckStyle.COUNT)
+@Entity(name = "safari")
+@SQLDelete(sql = "UPDATE safari SET deleted = true WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "deleted = false")
 public class Safari extends BaseEntity {
-    @Column(name = "from")
-    private String from;
+
+    @Column(name = "startPoint")
+    private String startPoint;
 
     @Column(name = "destination")
     private String destination;

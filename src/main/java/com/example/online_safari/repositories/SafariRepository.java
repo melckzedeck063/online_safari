@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface SafariRepository extends JpaRepository<Safari,Long> {
     Optional<Safari> findFirstByUuid(String uuid);
 
-    Page<Safari> findAllByFromAndDeletedFalse(String from, Pageable pageable);
+    Page<Safari> findAllByStartPointAndDeletedFalse(String from, Pageable pageable);
 
     Page<Safari> findAllByDestinationAndDeletedFalse(String destination, Pageable pageable);
 

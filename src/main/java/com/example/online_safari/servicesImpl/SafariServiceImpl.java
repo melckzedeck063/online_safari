@@ -43,6 +43,10 @@ public class SafariServiceImpl implements SafariService {
                 return new Response<>(true,ResponseCode.NULL_ARGUMENT,"destination point can not be null");
             }
 
+            if(safariDto.getStartPoint() == null){
+                return new Response<>(true,ResponseCode.NULL_ARGUMENT,"destination point can not be null");
+            }
+
             if(safariDto.getPrice() == null){
                 return new Response<>(true,ResponseCode.NULL_ARGUMENT,"route price can not be null");
             }
@@ -51,8 +55,8 @@ public class SafariServiceImpl implements SafariService {
             }
 
 
-            if(!safariDto.getFrom().isBlank() &&  !Objects.equals(safariDto.getFrom(), safari.getFrom())){
-                safari.setFrom(safariDto.getFrom());
+            if(!safariDto.getStartPoint().isBlank() &&  !Objects.equals(safariDto.getStartPoint(), safari.getStartPoint())){
+                safari.setStartPoint(safariDto.getStartPoint());
             }
 
             if(!safariDto.getDestination().isBlank() &&  !Objects.equals(safariDto.getDestination(), safari.getDestination())){
@@ -128,7 +132,7 @@ public class SafariServiceImpl implements SafariService {
     @Override
     public Page<Safari> getAllRoutesFrom(String from, Pageable pageable) {
         try {
-            Page<Safari> safariPage =  safariRepository.findAllByFromAndDeletedFalse(from,pageable);
+            Page<Safari> safariPage =  safariRepository.findAllByStartPointAndDeletedFalse(from,pageable);
             return  safariPage;
         }
         catch (Exception e){
