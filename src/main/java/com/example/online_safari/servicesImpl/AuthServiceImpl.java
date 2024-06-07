@@ -107,11 +107,8 @@ public class AuthServiceImpl implements AuthService {
                 account.setUserType(userAccountDto.getUserRole());
             }
 
-            if(userAccountDto.getNationality() == null){
-                return new Response<>(true,ResponseCode.NULL_ARGUMENT, "Nationality can not be null");
-            }
             if(userAccountDto.getMiddleName() != null){
-                account.setNationality(userAccountDto.getMiddleName());
+                account.setMiddleName(userAccountDto.getMiddleName());
             }
             else  {
                 account.setMiddleName("");
@@ -122,7 +119,6 @@ public class AuthServiceImpl implements AuthService {
             account.setUsername(userAccountDto.getUsername());
             account.setFirstName(userAccountDto.getFirstName());
             account.setLastName(userAccountDto.getLastName());
-            account.setNationality(userAccountDto.getNationality());
             account.setPassword(passwordEncoder.encode(userAccountDto.getPassword().trim()));
 
 //            MessageRequestDto messageRequestDto = new MessageRequestDto();

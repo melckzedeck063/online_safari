@@ -19,7 +19,6 @@ public class UserAccountDto {
     private String phoneNumber;
     private String userRole;
     private String password;
-    private String nationality;
 
 }
 

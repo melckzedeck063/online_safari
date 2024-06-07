@@ -74,10 +74,6 @@ public class UserAccountServiceImpl implements UserAccountService {
                 return new Response<>(true,ResponseCode.NULL_ARGUMENT, "Phone number can not be empty");
             }
 
-            if(userAccountDto.getNationality() == null){
-                return new Response<>(true,ResponseCode.NULL_ARGUMENT, "Nationality can not be null");
-            }
-
             if(userAccountDto.getMiddleName() == null){
                 userAccount1.setMiddleName("");
             }
@@ -98,9 +94,6 @@ public class UserAccountServiceImpl implements UserAccountService {
 
             if(!userAccountDto.getPhoneNumber().isBlank() && !Objects.equals(userAccountDto.getPhoneNumber(), userAccount1.getPhone()))
                 userAccount1.setPhone(userAccountDto.getPhoneNumber());
-
-            if(!userAccountDto.getNationality().isBlank() && !Objects.equals(userAccountDto.getNationality(), userAccount1.getNationality()))
-                userAccount1.setNationality(userAccountDto.getNationality());
 
 
             if(userAccountDto.getUserRole() == null){

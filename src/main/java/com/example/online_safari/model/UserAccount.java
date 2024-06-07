@@ -46,9 +46,6 @@ public class UserAccount extends BaseEntity implements Serializable {
     @Column(name = "userType")
     private String userType;
 
-    @Column(name = "nationality")
-    private String nationality;
-
     @JsonIgnore
     private String password;
 
